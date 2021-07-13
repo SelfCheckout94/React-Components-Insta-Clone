@@ -6,7 +6,6 @@ import React from "react";
 const Post = (props) => {
   // 🔥 Make sure the parent of Post is passing the right props!
   const { post, likePost } = props;
-  console.log(post.id);
   return (
     <div className="post-border">
       <PostHeader username={post.username} thumbnailUrl={post.thumbnailUrl} />
