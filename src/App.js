@@ -23,6 +23,7 @@ const App = () => {
   // To make the search bar work (which is stretch) we'd need another state to hold the search term.
   const [posts, setPosts] = useState(dummyData);
   const [search, setSearch] = useState("");
+  const [clicked, setClicked] = useState(false);
 
   /*
   This function serves the purpose of increasing the number of likes by one, of the post with a given id.
@@ -42,10 +43,18 @@ const App = () => {
     setPosts(newLike);
   };
 
+  const unlikePost = (postId, state) => {
+    const unlike = posts.map((post) => {
+      return post.id === postId ? { ...post, likes: post.likes - 1 } : post;
+    });
+    setPosts(unlike);
+    setClicked(!state);
+  };
+
   return (
     <div className="App">
       <SearchBar />
-      <Posts posts={posts} likePost={likePost} />
+      <Posts posts={posts} likePost={likePost} unlikePost={unlikePost} />
       {/* Check the implementation of each component, to see what props they require, if any! */}
     </div>
   );
